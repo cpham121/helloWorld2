@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():  # put application's code here
-    return 'Hello World from Celia Pham! I am adding my first code change'
+    return 'Hello World from Celia Pham! This is my first HTML page. '
 
 @app.route('/hello')
 def hello():
@@ -13,4 +13,4 @@ def hello():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(port=8000, debug=True)
