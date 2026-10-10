@@ -26,7 +26,7 @@ p#special-one {
     padding: 15px;
 }
 
-/* Adding a class attribute. */
+/* Adding a class attribute with one rule. */
 .darkblue {
     color: darkblue;
 }
