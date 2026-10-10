@@ -13,7 +13,7 @@ h2 {
 /* Adding border colors to table, */
 table, td, th {
     border-style: solid;
-    border-width: 3x;
+    border-width: 3px;
     border-color: darkblue;
     border-collapse: collapse;
 
