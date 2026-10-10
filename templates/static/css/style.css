@@ -1,0 +1,38 @@
+/* Adding two rules to paragraph, */
+p {
+    color: #333333;
+    font-size: 16px;
+}
+
+/* Adding two roles to header 2. */
+h2 {
+    color: #990000;
+    font-size: 24px;
+}
+
+/* Adding border colors to table, */
+table, td, th {
+    border-style: solid;
+    border-width: 3x;
+    border-color: darkblue;
+    border-collapse: collapse;
+
+}
+
+/* Adding id attribute with 2 rules */
+p#special-one {
+    color: #990000;
+    background-color: #f2e6e6;
+    padding: 15px;
+}
+
+/* Adding a class attribute. */
+.darkblue {
+    color: darkblue;
+}
+
+img.logo {
+    width: 267px;
+    height: 72px;
+    margin-top: 20px;
+}
