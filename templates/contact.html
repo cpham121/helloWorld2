@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Contact{% endblock %}
+
+{% block content %}
+    <h1 class="mb-4">Contact</h1>
+<!-- Show thank-you message after the form is submitted.1-->
+    {% if form_submitted %}
+        <h2 class="h4">Thank you for completing my form!</h2>
+
+        <p><strong>First Name:</strong> {{ request.form.get('first_name') }}</p>
+        <p><strong>Last Name:</strong> {{ request.form.get('last_name') }}</p>
+        <p><strong>Email Address:</strong> {{ request.form.get('email') }}</p>
+        <p><strong>Message:</strong> {{ request.form.get('message') }}</p>
+
+        <a href="{{ url_for('contact_us') }}" class="btn btn-primary">
+            Complete Form Again
+        </a>
+    {% else %}
+         <!-- Display the form before submission. -->
+        <p>Please complete all four fields below.</p>
+
+        <form action="{{ url_for('contact_us') }}" method="post">
+            <div class="mb-3">
+                <label for="first_name" class="form-label">First Name</label>
+                <input type="text" class="form-control"
+                       id="first_name" name="first_name" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="last_name" class="form-label">Last Name</label>
+                <input type="text" class="form-control"
+                       id="last_name" name="last_name" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="email" class="form-label">Email Address</label>
+                <input type="email" class="form-control"
+                       id="email" name="email" required>
+            </div>
+
+            <div class="mb-4">
+                <label for="message" class="form-label">Message</label>
+                <textarea class="form-control" id="message"
+                          name="message" rows="4" required></textarea>
+            </div>
+            <!-- Button to submit completed form. -->
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    {% endif %}
+{% endblock %}
