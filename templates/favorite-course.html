@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Favorite Course{% endblock %}
+
+{% block content %}
+    <h1 class="mb-4">Favorite Course</h1>
+    {% if subject and course number %}
+        <p class="lead">You entered your favorite course as: {{ subject }} {{ course_number }}</p>
+    {% else %}
+        <!-- Display my options for my favorite courses !-->
+        <p>Add subject and course_number to the URL to display your favorite course.</p>
+        <a href="/favorite-course?subject=BMGT&amp;course_number=403" class="btn btn-primary">View BMGT 403</a>
+        <a href="/favorite-course?subject=BMGT&amp;course_number=407" class="btn btn-primary">View BMGT 407</a>
+        <a href="/favorite-course?subject=BMGT&amp;course_number=302" class="btn btn-primary">View BMGT 302</a>
+    {% endif %}
+{% endblock %}
