@@ -44,6 +44,11 @@ def student_create():
             .all()
         return render_template('student_entry.html', majors=majors, action='create')
     elif request.method == 'POST':
+        email = request.form.get('email', '').strip()
+        if not email or len(email) > 100:
+            flash('Email is required and must be 100 characters or fewer.', 'error')
+            return redirect(url_for('student_create'))
+
         first_name = request.form['first_name']
         last_name = request.form['last_name']
         major_id = request.form['major_id']
@@ -51,7 +56,7 @@ def student_create():
         birth_date = request.form['birth_date']
         is_honors = True if 'is_honors' in request.form else False
 
-        student = Student(first_name=first_name, last_name=last_name, major_id=major_id,
+        student = Student(first_name=first_name, last_name=last_name, email=email, major_id=major_id,
                           birth_date=dt.strptime(birth_date, '%Y-%m-%d'), is_honors=is_honors)
         db.session.add(student)
         db.session.commit()
@@ -80,6 +85,12 @@ def student_edit(student_id):
         student = Student.query.filter_by(student_id=student_id).first()
 
         if student:
+            email = request.form.get('email', '').strip()
+            if not email or len(email) > 100:
+                flash('Email is required and must be 100 characters or fewer.', 'error')
+                return redirect(url_for('student_edit', student_id=student_id))
+
+            student.email = email
             student.first_name = request.form['first_name']
             student.last_name = request.form['last_name']
             student.major_id = request.form['major_id']
@@ -119,3 +130,6 @@ def home():
 
 if __name__ == '__main__':
     app.run()
+
+if __name__ == '__main__':
+    app.run(port=8000, debug=True)

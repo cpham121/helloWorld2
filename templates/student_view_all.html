@@ -12,51 +12,52 @@
 
     <div class="row">
     <div class="col">
-
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                {% for category, message in messages %}
-                  <div class="alert {{ 'alert-success' if category == 'success' else 'alert-danger' }}" role="alert">
-                    {{ message }}
-                  </div>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
-
-    <table class="table table-striped">
+    <div class="card student-card overflow-hidden">
+    <div class="table-responsive">
+    <table class="table table-hover align-middle mb-0">
+        <thead>
         <tr>
-            <th>Last Name</th>
-			<th>First Name</th>
-            <th>Major</th>
-            <th>Is Honors?</th>
-            <th>Actions</th>
+            <th scope="col">Last Name</th>
+			<th scope="col">First Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Major</th>
+            <th scope="col">Is Honors?</th>
+            <th scope="col">Actions</th>
         </tr>
 
+        </thead>
+        <tbody>
         {% for each_student, each_major in students %}
         <tr>
             <td><a href="{{ url_for('student_view', student_id=each_student['student_id']) }}">{{ each_student['last_name'] }}</a></td>
             <td>{{ each_student['first_name'] }}</td>
+            <td class="student-email">{{ each_student['email'] }}</td>
             <td>{{ each_major['major'] }}</td>
             <td>{{ 'Yes' if each_student['is_honors'] == 1 else 'No' }}</td>
             <td>
-                <a href="{{ url_for('student_edit', student_id=each_student['student_id']) }}" class="btn btn-secondary" role="button">Edit</a>
+                <a href="{{ url_for('student_edit', student_id=each_student['student_id']) }}" class="btn btn-outline-primary btn-sm" role="button">Edit</a>
                 &nbsp;
-                <a href="{{ url_for('student_delete', student_id=each_student['student_id']) }}" class="btn btn-secondary" role="button">Delete</a>
+                <a href="{{ url_for('student_delete', student_id=each_student['student_id']) }}" class="btn btn-outline-danger btn-sm" role="button">Delete</a>
             </td>
         </tr>
+        {% else %}
+        <tr><td colspan="6" class="text-center text-secondary py-5">No students to display. Add a student to get started.</td></tr>
         {% endfor %}
+        </tbody>
     </table>
     </div>
     </div>
+    </div>
+    </div>
 
-    <div class="row">
+    <div class="row mt-3 text-secondary small">
         <div class="col">
             Total Number of Students: {{ students|length }}
         </div>
     </div>
 
     <div class="row">
-        <div class="col text-center">
+        <div class="col mt-4">
             <a href="{{ url_for('student_create') }}" class="btn btn-primary" role="button">Add New Student</a>
         </div>
     </div>
