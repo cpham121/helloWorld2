@@ -1,38 +1,216 @@
-/* Adding two rules to paragraph, */
-p {
-    color: #333333;
-    font-size: 16px;
+/* University student pages */
+
+/* Shared navy colors */
+:root {
+    --navy: #183153;
+    --navy-dark: #10233d;
 }
 
-/* Adding two roles to header 2. */
-h2 {
-    color: #990000;
-    font-size: 24px;
+/* Page background and typography */
+body {
+    background: #f3f5f8;
+    color: #243247;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    line-height: 1.6;
 }
 
-/* Adding border colors to table, */
-table, td, th {
-    border-style: solid;
-    border-width: 3px;
-    border-color: darkblue;
-    border-collapse: collapse;
-
+/* University navigation bar */
+.student-navbar {
+    background: var(--navy);
+    padding: 1rem 0;
+    box-shadow: 0 2px 8px #18315318;
 }
 
-/* Adding id attribute with 2 rules */
-p#special-one {
-    color: #990000;
-    background-color: #f2e6e6;
-    padding: 15px;
+/* Navigation layout */
+.student-navbar .container {
+    gap: .75rem;
 }
 
-/* Adding a class attribute with one rule. */
-.darkblue {
-    color: darkblue;
+/* Navigation links */
+.student-navbar .nav-link {
+    color: #e4eaf2;
+    border-radius: 6px;
 }
 
-img.logo {
-    width: 267px;
-    height: 72px;
-    margin-top: 20px;
+/* Navigation link hover and keyboard focus */
+.student-navbar .nav-link:hover,
+.student-navbar .nav-link:focus {
+    color: white;
+    background: #ffffff18;
+}
+
+/* Centered page content */
+.page-content {
+    max-width: 1140px;
+    padding-top: 2.5rem;
+    padding-bottom: 3rem;
+}
+
+/* Page heading */
+h1 {
+    color: var(--navy);
+    font-size: clamp(1.65rem, 4vw, 2rem);
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+/* Student form and table cards */
+.student-card {
+    border: 1px solid #e1e6ed;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px #18315308;
+}
+
+/* Space inside student cards */
+.student-card .card-body {
+    padding: 2rem;
+}
+
+/* Form labels */
+.form-label {
+    margin-bottom: .5rem;
+}
+
+/* Form inputs and dropdowns */
+.form-control, .form-select {
+    border-color: #cbd4df;
+    padding: .65rem .8rem;
+    border-radius: 7px;
+}
+
+/* Form input focus */
+.form-control:focus, .form-select:focus {
+    border-color: #53749b;
+    box-shadow: 0 0 0 .2rem #18315320;
+}
+
+/* Required field indicators */
+.required-mark {
+    color: #b42335;
+    font-weight: 700;
+}
+
+/* Form action buttons */
+.form-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .75rem;
+    border-top: 1px solid #e7ebf0;
+    padding-top: 1.5rem;
+    margin-top: 1.75rem;
+}
+
+/* Shared button appearance */
+.btn {
+    border-radius: 7px;
+    font-weight: 600;
+    padding: .55rem 1rem;
+}
+
+/* Primary Add and Update buttons */
+.btn-primary {
+    --bs-btn-bg: var(--navy);
+    --bs-btn-border-color: var(--navy);
+    --bs-btn-hover-bg: var(--navy-dark);
+    --bs-btn-hover-border-color: var(--navy-dark);
+    --bs-btn-active-bg: var(--navy-dark);
+    --bs-btn-active-border-color: var(--navy-dark);
+}
+
+/* Outlined Edit buttons */
+.btn-outline-primary {
+    --bs-btn-color: var(--navy);
+    --bs-btn-border-color: var(--navy);
+    --bs-btn-hover-bg: var(--navy);
+    --bs-btn-hover-border-color: var(--navy);
+}
+
+/* Small table buttons */
+.btn-sm {
+    padding: .3rem .65rem;
+}
+
+/* Student table heading */
+.table thead th {
+    background: var(--navy);
+    color: white;
+    font-size: .85rem;
+    white-space: nowrap;
+    padding: 1rem;
+    border: 0;
+}
+
+/* Student table cells */
+.table td {
+    padding: 1rem;
+    border-color: #edf0f4;
+}
+
+/* Student table row hover color */
+.table {
+    --bs-table-hover-bg: #f1f5fa;
+}
+
+/* Keep table actions together */
+.table td:last-child {
+    white-space: nowrap;
+}
+
+/* Student name links */
+.table a:not(.btn) {
+    color: var(--navy);
+    font-weight: 600;
+    text-underline-offset: 3px;
+}
+
+/* Readable student email addresses */
+.student-email {
+    overflow-wrap: anywhere;
+    min-width: 180px;
+}
+
+/* Shared alert appearance */
+.alert {
+    border-radius: 8px;
+    border-width: 0 0 0 4px;
+}
+
+/* Success messages */
+.alert-success {
+    border-color: #27804f;
+    background: #eaf6ee;
+    color: #215d3a;
+}
+
+/* Error messages */
+.alert-danger {
+    border-color: #b42335;
+    background: #fff0f1;
+    color: #912032;
+}
+
+/* Layouts for phones */
+@media (max-width: 575.98px) {
+    /* Navigation layout */
+    .student-navbar .container {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    /* Centered page content */
+    .page-content {
+        padding-top: 1.5rem;
+    }
+
+    /* Space inside student cards */
+    .student-card .card-body {
+        padding: 1.25rem;
+    }
+
+    /* Wrap navigation links on phones */
+    .navbar-nav {
+        flex-wrap: wrap;
+        gap: .5rem !important;
+    }
+
 }
