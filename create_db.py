@@ -1,5 +1,6 @@
 from app import app, db
-from models import Student, Major
+from models import Student, Major, User
+from werkzeug.security import generate_password_hash
 import datetime as dt
 
 with app.app_context():
@@ -14,6 +15,31 @@ with app.app_context():
         a_major = Major(major=each_major)
         db.session.add(a_major)
         db.session.commit()
+
+    # Add Celia as an Information Systems student
+    major = Major.query.filter_by(major='Information Systems').one()
+    celia = Student(
+        first_name='Celia',
+        last_name='Pham',
+        email='celia.pham121@terpmail.umd.edu',
+        major_id=major.major_id,
+        birth_date=dt.datetime(2005, 1, 15),
+        is_honors=False
+    )
+    db.session.add(celia)
+
+    # Add Celia STUDENT account using a hashed password
+    elms_username = 'cpham121'
+    celia_user = User(
+        username=elms_username,
+        first_name='Celia',
+        last_name='Pham',
+        email='celia.pham121@terpmail.umd.edu',
+        password=generate_password_hash(elms_username),
+        role='STUDENT'
+    )
+    db.session.add(celia_user)
+    db.session.commit()
 
     # Initial loading of students first_name, last_name, email, major_id, birth_date, is_honors
     students = [
