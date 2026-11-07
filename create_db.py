@@ -41,6 +41,32 @@ with app.app_context():
     db.session.add(celia_user)
     db.session.commit()
 
+    # Add a separate ADMIN account using a hashed password
+    admin_username = 'cpham121_admin'
+    admin_user = User(
+        username=admin_username,
+        first_name='Celia',
+        last_name='Pham',
+        email='cpham_admin',
+        password=generate_password_hash(admin_username),
+        role='ADMIN'
+    )
+    db.session.add(admin_user)
+    db.session.commit()
+
+    # Add a separate MANAGER account using a hashed password
+    manager_username = 'cpham121_manager'
+    manager_user = User(
+        username=manager_username,
+        first_name='Celia',
+        last_name='Pham',
+        email='cpham_manager',
+        password=generate_password_hash(manager_username),
+        role='MANAGER'
+    )
+    db.session.add(manager_user)
+    db.session.commit()
+
     # Initial loading of students first_name, last_name, email, major_id, birth_date, is_honors
     students = [
         {'student_id': '1', 'first_name': 'Robert', 'last_name':'Smith', 'email': 'robert.smith@example.com', 'major_id':3,
