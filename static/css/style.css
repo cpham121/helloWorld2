@@ -1,6 +1,4 @@
-/* University student pages */
-
-/* Shared navy colors */
+/* University student system colors */
 :root {
     --navy: #183153;
     --navy-dark: #10233d;
@@ -8,106 +6,89 @@
 
 /* Page background and typography */
 body {
-    background: #f3f5f8;
+    background-color: #f3f5f8;
     color: #243247;
     font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
     line-height: 1.6;
 }
 
-/* University navigation bar */
+/* Navigation bar */
 .student-navbar {
-    background: var(--navy);
+    background-color: var(--navy);
     padding: 1rem 0;
-    box-shadow: 0 2px 8px #18315318;
-}
-
-/* Navigation layout */
-.student-navbar .container {
-    gap: .75rem;
 }
 
 /* Navigation links */
-.student-navbar .nav-link {
+.student-navbar .nav-link,
+.student-navbar .navbar-text {
     color: #e4eaf2;
-    border-radius: 6px;
 }
 
-/* Navigation link hover and keyboard focus */
 .student-navbar .nav-link:hover,
-.student-navbar .nav-link:focus {
-    color: white;
-    background: #ffffff18;
+.student-navbar .nav-link.active {
+    color: #ffffff;
 }
 
 /* Centered page content */
 .page-content {
     max-width: 1140px;
-    padding-top: 2.5rem;
+    padding-top: 2rem;
     padding-bottom: 3rem;
 }
 
-/* Page heading */
-h1 {
+/* Page headings */
+h1,
+h2 {
     color: var(--navy);
-    font-size: clamp(1.65rem, 4vw, 2rem);
     font-weight: 700;
+}
+
+h1 {
+    font-size: 1.75rem;
+}
+
+h2 {
+    font-size: 1.4rem;
     margin-bottom: 1.5rem;
 }
 
-/* Student form and table cards */
+/* White content cards */
 .student-card {
     border: 1px solid #e1e6ed;
     border-radius: 12px;
     box-shadow: 0 4px 20px #18315308;
 }
 
-/* Space inside student cards */
 .student-card .card-body {
     padding: 2rem;
 }
 
-/* Form labels */
-.form-label {
-    margin-bottom: .5rem;
-}
-
-/* Form inputs and dropdowns */
-.form-control, .form-select {
+/* Form fields */
+.form-control,
+.form-select {
     border-color: #cbd4df;
-    padding: .65rem .8rem;
     border-radius: 7px;
+    padding: 0.65rem 0.8rem;
 }
 
-/* Form input focus */
-.form-control:focus, .form-select:focus {
+.form-control:focus,
+.form-select:focus {
     border-color: #53749b;
-    box-shadow: 0 0 0 .2rem #18315320;
+    box-shadow: 0 0 0 0.2rem #18315320;
 }
 
-/* Required field indicators */
-.required-mark {
-    color: #b42335;
-    font-weight: 700;
+/* Login form */
+.login-card {
+    max-width: 520px;
+    margin: 0 auto;
 }
 
-/* Form action buttons */
-.form-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: .75rem;
-    border-top: 1px solid #e7ebf0;
-    padding-top: 1.5rem;
-    margin-top: 1.75rem;
+.login-form {
+    max-width: 450px;
+    margin: 0 auto;
 }
 
-/* Shared button appearance */
-.btn {
-    border-radius: 7px;
-    font-weight: 600;
-    padding: .55rem 1rem;
-}
-
-/* Primary Add and Update buttons */
+/* Primary buttons */
 .btn-primary {
     --bs-btn-bg: var(--navy);
     --bs-btn-border-color: var(--navy);
@@ -117,100 +98,66 @@ h1 {
     --bs-btn-active-border-color: var(--navy-dark);
 }
 
-/* Outlined Edit buttons */
-.btn-outline-primary {
-    --bs-btn-color: var(--navy);
-    --bs-btn-border-color: var(--navy);
-    --bs-btn-hover-bg: var(--navy);
-    --bs-btn-hover-border-color: var(--navy);
+/* Shared button spacing */
+.btn {
+    border-radius: 7px;
+    font-weight: 600;
 }
 
-/* Small table buttons */
-.btn-sm {
-    padding: .3rem .65rem;
+/* Student table */
+.table {
+    --bs-table-hover-color: #243247;
+    --bs-table-hover-bg: transparent;
 }
 
-/* Student table heading */
-.table thead th {
-    background: var(--navy);
-    color: white;
-    font-size: .85rem;
-    white-space: nowrap;
-    padding: 1rem;
-    border: 0;
+.table th {
+    --bs-table-color: #ffffff;
+    --bs-table-striped-color: #ffffff;
+    --bs-table-hover-color: #ffffff;
+    background-color: var(--navy);
+    color: #ffffff;
 }
 
-/* Student table cells */
+/* Keep column headings white when the cursor is over the table */
+.table tr:hover th {
+    color: #ffffff;
+}
+
+.table th,
 .table td {
     padding: 1rem;
-    border-color: #edf0f4;
+    vertical-align: middle;
 }
 
-/* Student table row hover color */
-.table {
-    --bs-table-hover-bg: #f1f5fa;
+.table td {
+    overflow-wrap: anywhere;
 }
 
-/* Keep table actions together */
 .table td:last-child {
     white-space: nowrap;
 }
 
-/* Student name links */
-.table a:not(.btn) {
-    color: var(--navy);
-    font-weight: 600;
-    text-underline-offset: 3px;
-}
-
-/* Readable student email addresses */
-.student-email {
-    overflow-wrap: anywhere;
-    min-width: 180px;
-}
-
-/* Shared alert appearance */
-.alert {
-    border-radius: 8px;
-    border-width: 0 0 0 4px;
-}
-
 /* Success messages */
 .alert-success {
-    border-color: #27804f;
-    background: #eaf6ee;
+    background-color: #eaf6ee;
     color: #215d3a;
+    border-left: 4px solid #27804f;
 }
 
 /* Error messages */
 .alert-danger {
-    border-color: #b42335;
-    background: #fff0f1;
+    background-color: #fff0f1;
     color: #912032;
+    border-left: 4px solid #b42335;
 }
 
-/* Layouts for phones */
+/* Smaller screens */
 @media (max-width: 575.98px) {
-    /* Navigation layout */
-    .student-navbar .container {
-        align-items: flex-start;
-        flex-direction: column;
-    }
-
-    /* Centered page content */
     .page-content {
-        padding-top: 1.5rem;
+        padding-top: 1.25rem;
     }
 
-    /* Space inside student cards */
     .student-card .card-body {
         padding: 1.25rem;
     }
-
-    /* Wrap navigation links on phones */
-    .navbar-nav {
-        flex-wrap: wrap;
-        gap: .5rem !important;
-    }
-
 }
