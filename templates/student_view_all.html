@@ -13,6 +13,7 @@
     <div class="row">
     <div class="col">
 
+    <div class="table-responsive">
     <table class="table table-striped">
         <tr>
             <th>Last Name</th>
@@ -36,13 +37,14 @@
             <td>
                 <a href="{{ url_for('student_edit', student_id=each_student['student_id']) }}" class="btn btn-secondary" role="button">Edit</a>
                 {% if current_user.role in ['ADMIN'] %}
-                <a href="{{ url_for('student_delete', student_id=each_student['student_id']) }}" class="btn btn-secondary" role="button">Delete</a>
+                <a href="{{ url_for('student_delete', student_id=each_student['student_id']) }}" class="btn btn-outline-danger" role="button">Delete</a>
                 {% endif %}
             </td>
             {% endif %}
         </tr>
         {% endfor %}
     </table>
+    </div>
     </div>
     </div>
 

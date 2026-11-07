@@ -1,6 +1,9 @@
 import os
 from flask import Flask, render_template, request, redirect, url_for, flash
-from models import db, Student, Major
+from models import db, Student, Major, User
+from flask_login import LoginManager, login_required, login_user, logout_user, current_user
+from werkzeug.security import check_password_hash
+from authorize import role_required
 from datetime import datetime as dt
 
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -10,6 +13,66 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(app.instance
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = 'beyond_course_scope'
 db.init_app(app)
+
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = 'login'
+
+
+@login_manager.user_loader
+def load_user(user_id):
+    try:
+        return db.session.get(User, int(user_id))
+    except (TypeError, ValueError):
+        return None
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        user = User.query.filter_by(
+            username=request.form.get('username', '')
+        ).first()
+
+        if user and check_password_hash(
+            user.password, request.form.get('password', '')
+        ):
+            login_user(user)
+            if user.role == 'STUDENT':
+                return redirect(url_for('student_my_record'))
+            if user.role in ['MANAGER', 'ADMIN']:
+                return redirect(url_for('training'))
+            return redirect(url_for('home'))
+
+        flash('Invalid username or password.', 'error')
+
+    return render_template('login.html')
+
+
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('login'))
+
+
+@app.route('/training')
+@login_required
+@role_required(['MANAGER', 'ADMIN'])
+def training():
+    return render_template('training.html')
+
+
+@app.route('/student/my-record')
+@login_required
+@role_required(['STUDENT'])
+def student_my_record():
+    student = Student.query.filter_by(email=current_user.email).first()
+    if student:
+        return redirect(url_for('student_view', student_id=student.student_id))
+
+    flash('Your student record could not be found.', 'error')
+    return redirect(url_for('home'))
 
 
 @app.route('/student/view')
